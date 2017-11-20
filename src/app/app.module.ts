@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
-import { MenuComponent } from './components/shared/menu/menu.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { RepositoryComponent } from './components/repository/repository.component';
@@ -16,7 +15,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   declarations: [
     AppComponent,
     HeaderComponent,
-    MenuComponent,
     RegisterComponent,
     LoginComponent,
     RepositoryComponent,

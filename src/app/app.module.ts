@@ -10,9 +10,12 @@ import {VersionComponent} from './components/version/version.component';
 import {FileComponent} from './components/file/file.component';
 import {AppRoutingModule} from './app.routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {GlobalService} from './services/global.service';
+import {GlobalService} from './services/globalService';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule, MatDialog, MatDialogModule, MatInputModule} from '@angular/material';
+import {UserService} from './services/userService';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,9 +33,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    HttpClientModule
   ],
-  providers: [GlobalService],
+  providers: [GlobalService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

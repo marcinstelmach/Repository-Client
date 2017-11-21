@@ -4,6 +4,8 @@ import {UserService} from '../../services/userService';
 import {UserForLogin} from '../../models/userForLogin';
 import {HttpErrorResponse} from '@angular/common/http';
 import {TokenModel} from '../../models/tokenModel';
+import {AuthService} from '../../services/authService';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   token: TokenModel;
   errors: any;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user).subscribe(
       data => {
         this.token = data.body;
-        console.log(this.token);
+        this.authService.setToken(this.token);
       },
       (err: HttpErrorResponse) => {
         this.errors = err.error;
@@ -44,4 +46,8 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  logout() {
+    this.authService.removeTokens();
+    this.router.navigate(['/login']);
+  }
 }

@@ -23,7 +23,7 @@ export class UserService {
   }
 
   public login(user: UserForLogin): Observable<HttpResponse<any>> {
-    return this.http.post(this.url + 'token', user, {headers: this.headers, observe: 'response'});
+    return this.http.post(this.url + 'token/', user, {headers: this.headers, observe: 'response'});
   }
 
 }

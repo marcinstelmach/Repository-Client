@@ -14,9 +14,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   user: UserForLogin;
   token: TokenModel;
+  errors: any;
 
   constructor(private fb: FormBuilder, private userService: UserService) {
-
   }
 
   ngOnInit(): void {
@@ -35,9 +35,11 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user).subscribe(
       data => {
         this.token = data.body;
+        console.log(this.token);
       },
       (err: HttpErrorResponse) => {
-        console.log(err.error);
+        this.errors = err.error;
+        console.log(this.errors);
       }
     );
   }

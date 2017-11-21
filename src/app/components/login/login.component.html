@@ -11,7 +11,8 @@
             <input type="email" matInput formControlName="email" placeholder="Email" required>
             <div *ngIf="loginForm.controls['email'].errors && !loginForm.controls['email'].pristine"
                  class="error-msg">
-              <div [hidden]="!loginForm.controls['email'].errors.email && !loginForm.controls['email'].errors.required">
+              <div
+                [hidden]="!loginForm.controls['email'].errors.email && !loginForm.controls['email'].errors.required">
                 Email is invalid.
               </div>
               <div [hidden]="!loginForm.controls['email'].errors.required">Email is required.</div>
@@ -24,14 +25,23 @@
             <div *ngIf="loginForm.controls['password'].errors && !loginForm.controls['password'].pristine"
                  class="error-msg">
               <div [hidden]="!loginForm.controls['password'].errors.required">Password is required.</div>
+              <div [hidden]="!loginForm.controls['password'].errors.minlength">Password must has at least 6 characters</div>
             </div>
           </mat-input-container>
+          <div *ngIf="errors" class="error">
+            <small class="form-text validation-error">{{errors['email']}}</small>
+            <small class="form-text validation-error">{{errors['password']}}</small>
+          </div>
           <mat-card-actions align="end">
-            <button class="btn btn-success" [disabled]="loginForm.invalid" (click)="login()" style="cursor: pointer;">
+            <button class="btn btn-success my-button" [disabled]="loginForm.invalid" (click)="login()"
+                    type="submit">
               Login
             </button>
           </mat-card-actions>
+
         </form>
       </mat-card-content>
     </mat-card>
   </div>
+  <div class="col-md"></div>
+</div>

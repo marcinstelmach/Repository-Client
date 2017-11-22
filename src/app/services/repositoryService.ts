@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {GlobalService} from './globalService';
 import {RepositoryForDisplay} from '../models/repositoryForDisplay';
+import {baseBuildCommandOptions} from '@angular/cli/commands/build';
 
 @Injectable()
 export class RepositoryService {
@@ -35,5 +36,16 @@ export class RepositoryService {
       }, observe: 'response'
     });
   }
+
+  deleteRepositoryForUser(repositoryId: string): Observable<HttpResponse<any>> {
+    this.url = this.url + repositoryId;
+    return this.http.delete(this.url, {
+      headers: {
+        'Authorization': 'Bearer ' + this.token,
+        'Content-Type': 'application/json'
+      }, observe: 'response'
+    });
+  }
+
 
 }

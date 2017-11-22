@@ -46,4 +46,15 @@ export class RepositoryComponent implements OnInit {
       }
     );
   }
+
+  deleteRepository(repositoryId: string) {
+    this.repositoryService.deleteRepositoryForUser(repositoryId).subscribe(
+      resp => {
+        this.ngOnInit();
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+      }
+    );
+  }
 }

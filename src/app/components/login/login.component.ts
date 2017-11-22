@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   user: UserForLogin;
   token: TokenModel;
   errors: any;
+  bodyError: string;
 
   constructor(private fb: FormBuilder, private userService: UserService, private authService: AuthService, private router: Router) {
   }

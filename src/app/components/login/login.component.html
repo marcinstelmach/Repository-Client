@@ -31,6 +31,7 @@
           <div *ngIf="errors" class="error">
             <small class="form-text validation-error">{{errors['email']}}</small>
             <small class="form-text validation-error">{{errors['password']}}</small>
+            <small class="form-text validation-error">{{errors}}</small>
           </div>
           <mat-card-actions align="end">
             <button class="btn btn-success my-button" [disabled]="loginForm.invalid" (click)="login()"

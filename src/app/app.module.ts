@@ -16,6 +16,10 @@ import {MatCardModule, MatInputModule} from '@angular/material';
 import {UserService} from './services/userService';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './services/authService';
+import {AuthGuard} from './services/authGuard';
+import {PageNotFoundComponent} from './components/shared/page-not-found/page-not-found.component';
+import {RepositoryService} from './services/repositoryService';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import {AuthService} from './services/authService';
     RepositoryComponent,
     VersionComponent,
     FileComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,13 @@ import {AuthService} from './services/authService';
     MatCardModule,
     HttpClientModule
   ],
-  providers: [GlobalService, UserService, AuthService],
+  providers: [
+    GlobalService,
+    UserService,
+    AuthService,
+    AuthGuard,
+    RepositoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

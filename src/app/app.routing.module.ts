@@ -6,6 +6,7 @@ import {RepositoryComponent} from './components/repository/repository.component'
 import {VersionComponent} from './components/version/version.component';
 import {FileComponent} from './components/file/file.component';
 import {AuthGuard} from './services/authGuard';
+import {PageNotFoundComponent} from './components/shared/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'repository', component: RepositoryComponent, canActivate: [AuthGuard]},
   {path: 'version', component: VersionComponent, canActivate: [AuthGuard]},
-  {path: 'file', component: FileComponent, canActivate: [AuthGuard]}
+  {path: 'file', component: FileComponent, canActivate: [AuthGuard]},
+  {path: '404', component: PageNotFoundComponent},
+  {path: '**', redirectTo: '404'}
 ];
 
 

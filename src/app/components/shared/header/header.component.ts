@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../../services/authService';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isLogin: boolean;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {
+    router.events.subscribe(val => {
+      this.checkIfLogin();
+    });
+  }
 
   ngOnInit() {
+    this.checkIfLogin();
+  }
+
+  logout() {
+    this.authService.removeTokens();
+    this.router.navigate(['/login']);
+  }
+
+  checkIfLogin(): void {
+    this.isLogin = !this.authService.isTokenExpired();
   }
 
 }

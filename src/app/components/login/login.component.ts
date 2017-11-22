@@ -38,16 +38,12 @@ export class LoginComponent implements OnInit {
       data => {
         this.token = data.body;
         this.authService.setToken(this.token);
+        this.router.navigate(['/repository']);
       },
       (err: HttpErrorResponse) => {
         this.errors = err.error;
         console.log(this.errors);
       }
     );
-  }
-
-  logout() {
-    this.authService.removeTokens();
-    this.router.navigate(['/login']);
   }
 }

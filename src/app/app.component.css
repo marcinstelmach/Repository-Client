@@ -1,3 +1,28 @@
 .btn {
   cursor: pointer;
 }
+
+.button {
+  background-color: #e7e7e7;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #ccc8c9;
+}
+
+a:link, .button{
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  cursor: pointer;
+}

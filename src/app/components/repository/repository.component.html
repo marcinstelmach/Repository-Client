@@ -1,23 +1,23 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2">
-      <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target=".bd-example-modal-lg">Create new Repository</a>
-      </div>
+      <button class="button" data-toggle="modal"
+              data-target=".bd-example-modal-lg">Create new Repository
+      </button>
     </div>
     <div class="col-md-9">
       <div class="row" *ngIf="repositories">
-        <div class="col-sm-3" *ngFor="let repo of repositories">
-          <div class="card">
-            <img class="card-img-top folder-img" [src]="emptyFolder" alt="Card image cap" *ngIf="repo.countOfVersion === 0">
-            <img class="card-img-top folder-img" [src]="fullFolder" alt="Card image cap" *ngIf="repo.countOfVersion > 0">
-            <div class="card-body">
-              <h4 class="card-title">{{repo.name}}</h4>
-              <p class="card-text">Created: {{repo.creationDateTime | date: medium}}</p>
-              <p class="card-text">Modified: {{repo.modifyDateTime | date: medium}}</p>
-              <a routerLink="/version" class="btn btn-primary">Open</a>
-              <button (click)="deleteRepository(repo.id)" class="btn btn-primary">Delete</button>
-            </div>
+        <div class="col-lg-3 col-sm-6 repository-container" *ngFor="let repo of repositories">
+          <img class="card-img-top folder-img" [src]="emptyFolder" alt="Card image cap"
+               *ngIf="repo.countOfVersion === 0">
+          <img class="card-img-top folder-img" [src]="fullFolder" alt="Card image cap"
+               *ngIf="repo.countOfVersion > 0">
+          <div class="card-body">
+            <h4>{{repo.name}}</h4>
+            <p>Created: {{repo.creationDateTime | date: medium}}</p>
+            <p>Modified: {{repo.modifyDateTime | date: medium}}</p>
+            <a routerLink="/version" class="button">Open</a>
+            <button (click)="deleteRepository(repo.id)" class="button">Delete</button>
           </div>
         </div>
       </div>
@@ -26,7 +26,8 @@
 </div>
 
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -48,9 +49,12 @@
                   <div *ngIf="repositoryForm.controls['name'].errors && !repositoryForm.controls['name'].pristine"
                        class="error-msg">
                     <div
-                      [hidden]="!repositoryForm.controls['name'].errors.minlength">Name must has at least 3 characters</div>
+                      [hidden]="!repositoryForm.controls['name'].errors.minlength">Name must has at least 3 characters
+                    </div>
                     <div [hidden]="!repositoryForm.controls['name'].errors.required">Name is required.</div>
-                    <div [hidden]="!repositoryForm.controls['name'].errors.maxlength">Name must be no longer than 30 characters.</div>
+                    <div [hidden]="!repositoryForm.controls['name'].errors.maxlength">Name must be no longer than 30
+                      characters.
+                    </div>
                   </div>
                 </mat-input-container>
                 <div *ngIf="errors" class="error">
@@ -62,7 +66,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" [disabled]="repositoryForm.invalid" (click)="addRepository()">Save changes</button>
+        <button type="button" class="btn btn-success" [disabled]="repositoryForm.invalid" (click)="addRepository()">Save
+          changes
+        </button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

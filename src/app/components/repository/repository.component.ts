@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {RepositoryForDisplay} from '../../models/repositoryForDisplay';
 import {RepositoryService} from '../../services/repositoryService';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -7,7 +7,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 @Component({
   selector: 'app-repository',
   templateUrl: './repository.component.html',
-  styleUrls: ['./repository.component.css']
+  styleUrls: ['./repository.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RepositoryComponent implements OnInit {
   emptyFolder = '../assets/img/folder.png';

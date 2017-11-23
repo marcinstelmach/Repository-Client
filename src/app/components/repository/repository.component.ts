@@ -10,7 +10,8 @@ import {HttpErrorResponse} from '@angular/common/http';
   styleUrls: ['./repository.component.css']
 })
 export class RepositoryComponent implements OnInit {
-  image = '../assets/img/folder.png';
+  emptyFolder = '../assets/img/folder.png';
+  fullFolder = '../assets/img/fullFolder.png';
   repositories: RepositoryForDisplay[];
   repositoryForm: FormGroup;
   errors: any;

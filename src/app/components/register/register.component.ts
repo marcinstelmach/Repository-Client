@@ -5,6 +5,7 @@ import {UserForCreation} from '../../models/userForCreation';
 import {UserService} from '../../services/userService';
 import {UserForDisplay} from '../../models/userForDisplay';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
   userForDisplay: UserForDisplay;
   errors: any;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
 
   }
 
@@ -54,6 +55,7 @@ export class RegisterComponent implements OnInit {
 
   hideModal() {
     this.showModal = false;
+    this.router.navigate(['/login']);
   }
 
 }

@@ -3,5 +3,6 @@ export interface RepositoryForDisplay {
   name: string;
   creationDateTime: string;
   modifyDateTime: string;
+  countOfVersion: number;
   userId: string;
 }

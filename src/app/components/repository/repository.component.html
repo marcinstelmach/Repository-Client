@@ -9,13 +9,14 @@
       <div class="row" *ngIf="repositories">
         <div class="col-sm-3" *ngFor="let repo of repositories">
           <div class="card">
-            <img class="card-img-top folder-img" [src]="image" alt="Card image cap">
+            <img class="card-img-top folder-img" [src]="emptyFolder" alt="Card image cap" *ngIf="repo.countOfVersion === 0">
+            <img class="card-img-top folder-img" [src]="fullFolder" alt="Card image cap" *ngIf="repo.countOfVersion > 0">
             <div class="card-body">
               <h4 class="card-title">{{repo.name}}</h4>
               <p class="card-text">Created: {{repo.creationDateTime | date: medium}}</p>
               <p class="card-text">Modified: {{repo.modifyDateTime | date: medium}}</p>
               <a routerLink="/version" class="btn btn-primary">Open</a>
-              <a (click)="deleteRepository(repo.id)" class="btn btn-primary">Delete</a>
+              <button (click)="deleteRepository(repo.id)" class="btn btn-primary">Delete</button>
             </div>
           </div>
         </div>

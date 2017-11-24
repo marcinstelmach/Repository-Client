@@ -3,6 +3,6 @@ export interface VersionForDisplay {
   name: string;
   description: string;
   creationDateTime: string;
-  modifyDateTime: string;
+  countOfFiles: number;
   repositoryId: string;
 }

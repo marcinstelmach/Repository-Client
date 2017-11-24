@@ -18,11 +18,32 @@
   background-color: #ccc8c9;
 }
 
-a:link, .button{
+a:link, .button {
   text-decoration: none;
   color: black;
 }
 
 button {
   cursor: pointer;
+}
+
+.button-up {
+  background-color: #fff;
+  font-size: 30px;
+  margin:auto;
+}
+
+
+a:link .button-up {
+  background-color: #fff;
+  color: #312d2e;
+}
+
+.button-up:hover {
+  background-color: #fff;
+  font-size: 31px;
+}
+
+.card-description {
+  line-height: 8px;
 }

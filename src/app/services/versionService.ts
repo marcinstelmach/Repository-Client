@@ -19,7 +19,7 @@ export class VersionService {
   }
 
   getVersionsForUser(repositoryId: string): Observable<HttpResponse<VersionForDisplay[]>> {
-    const url = this.url + repositoryId + '/';
+    const url = this.url + repositoryId + '/versions/';
     return this.http.get<VersionForDisplay[]>(url, {
       headers: {
         'Authorization': 'Bearer ' + this.token,
@@ -29,7 +29,7 @@ export class VersionService {
   }
 
   addVersionForUser(data: any, repositoryId: string): Observable<HttpResponse<VersionForDisplay>> {
-    const url = this.url + repositoryId + '/';
+    const url = this.url + repositoryId + '/versions/';
     return this.http.post<VersionForDisplay>(url, data, {
       headers: {
         'Authorization': 'Bearer ' + this.token,

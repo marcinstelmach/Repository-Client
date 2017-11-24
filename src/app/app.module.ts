@@ -19,6 +19,9 @@ import {AuthService} from './services/authService';
 import {AuthGuard} from './services/authGuard';
 import {PageNotFoundComponent} from './components/shared/page-not-found/page-not-found.component';
 import {RepositoryService} from './services/repositoryService';
+import {VersionService} from './services/versionService';
+import {FileService} from './services/fileService';
+import { NgUploaderModule } from 'ngx-uploader';
 
 
 @NgModule({
@@ -41,14 +44,17 @@ import {RepositoryService} from './services/repositoryService';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    NgUploaderModule
   ],
   providers: [
     GlobalService,
     UserService,
     AuthService,
     AuthGuard,
-    RepositoryService
+    RepositoryService,
+    VersionService,
+    FileService
   ],
   bootstrap: [AppComponent]
 })

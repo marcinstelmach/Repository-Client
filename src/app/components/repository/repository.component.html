@@ -14,9 +14,11 @@
                *ngIf="repo.countOfVersion > 0">
           <div class="card-body">
             <h4>{{repo.name}}</h4>
-            <p>Created: {{repo.creationDateTime | date: medium}}</p>
-            <p>Modified: {{repo.modifyDateTime | date: medium}}</p>
-            <a routerLink="/version" class="button">Open</a>
+            <div class="card-description">
+              <p>Created: {{repo.creationDateTime | date: medium}}</p>
+              <p>Versions: {{repo.countOfVersion}}</p>
+            </div>
+            <a [routerLink]="[repo.id, 'version']" class="button">Open</a>
             <button (click)="deleteRepository(repo.id)" class="button">Delete</button>
           </div>
         </div>

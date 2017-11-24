@@ -1,23 +1,28 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2">
-      <button class="button" data-toggle="modal"
-              data-target=".bd-example-modal-lg">Create new Repository
-      </button>
+      <div class="row">
+        <button class="button button-up" routerLink="/repository"><i class="fa fa-level-up" aria-hidden="true"></i></button>
+      </div>
+      <div class="row">
+        <button class="button" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin: auto;">Create new Version</button>
+      </div>
     </div>
     <div class="col-md-9">
-      <div class="row" *ngIf="repositories">
-        <div class="col-lg-3 col-sm-6 repository-container" *ngFor="let repo of repositories">
+      <div class="row" *ngIf="versions">
+        <div class="col-lg-3 col-sm-6 repository-container" *ngFor="let ver of versions">
           <img class="card-img-top folder-img" [src]="emptyFolder" alt="Card image cap"
-               *ngIf="repo.countOfVersion === 0">
+               *ngIf="ver.countOfFiles === 0">
           <img class="card-img-top folder-img" [src]="fullFolder" alt="Card image cap"
-               *ngIf="repo.countOfVersion > 0">
+               *ngIf="ver.countOfFiles > 0">
           <div class="card-body">
-            <h4>{{repo.name}}</h4>
-            <p>Created: {{repo.creationDateTime | date: medium}}</p>
-            <p>Modified: {{repo.modifyDateTime | date: medium}}</p>
-            <a routerLink="/version" class="button">Open</a>
-            <button (click)="deleteRepository(repo.id)" class="button">Delete</button>
+            <h4>{{ver.name}}</h4>
+            <div class="card-description">
+              <p>Created: {{ver.creationDateTime | date: short}}</p>
+              <p>Files: {{ver.countOfFiles}}</p>
+            </div>
+            <a [routerLink]="[ver.id, 'file']" class="button">Open</a>
+            <button (click)="deleteVersion(ver.id)" class="button">Delete</button>
           </div>
         </div>
       </div>
@@ -31,7 +36,6 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <!--<h5 class="modal-title">Create new Repository</h5>-->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -39,26 +43,42 @@
       <div class="modal-body">
         <div class="col-md-12 justify-content-md-center">
           <mat-card>
-            <mat-card-title>Create new Repository</mat-card-title>
+            <mat-card-title>Create new Version</mat-card-title>
             <mat-card-content>
-              <form [formGroup]="repositoryForm">
+              <form [formGroup]="versionForm">
                 <mat-input-container
-                  [ngClass]="{'error': repositoryForm.controls['name'].errors && !repositoryForm.controls['name'].pristine}"
-                  dividerColor="{{repositoryForm.controls['name'].errors && !repositoryForm.controls['name'].pristine ? 'warn' : 'primary'}}">
+                  [ngClass]="{'error': versionForm.controls['name'].errors && !versionForm.controls['name'].pristine}"
+                  dividerColor="{{versionForm.controls['name'].errors && !versionForm.controls['name'].pristine ? 'warn' : 'primary'}}">
                   <input type="text" matInput formControlName="name" placeholder="Name" required>
-                  <div *ngIf="repositoryForm.controls['name'].errors && !repositoryForm.controls['name'].pristine"
+                  <div *ngIf="versionForm.controls['name'].errors && !versionForm.controls['name'].pristine"
                        class="error-msg">
                     <div
-                      [hidden]="!repositoryForm.controls['name'].errors.minlength">Name must has at least 3 characters
+                      [hidden]="!versionForm.controls['name'].errors.minlength">Name must has at least 3 characters
                     </div>
-                    <div [hidden]="!repositoryForm.controls['name'].errors.required">Name is required.</div>
-                    <div [hidden]="!repositoryForm.controls['name'].errors.maxlength">Name must be no longer than 30
+                    <div [hidden]="!versionForm.controls['name'].errors.required">Name is required.</div>
+                    <div [hidden]="!versionForm.controls['name'].errors.maxlength">Name must be no longer than 30
+                      characters.
+                    </div>
+                  </div>
+                </mat-input-container>
+                <mat-input-container
+                  [ngClass]="{'error': versionForm.controls['description'].errors && !versionForm.controls['description'].pristine}"
+                  dividerColor="{{versionForm.controls['description'].errors && !versionForm.controls['description'].pristine ? 'warn' : 'primary'}}">
+                  <input type="text" matInput formControlName="description" placeholder="Description" required>
+                  <div *ngIf="versionForm.controls['description'].errors && !versionForm.controls['description'].pristine"
+                       class="error-msg">
+                    <div
+                      [hidden]="!versionForm.controls['description'].errors.minlength">Name must has at least 3 characters
+                    </div>
+                    <div [hidden]="!versionForm.controls['description'].errors.required">Name is required.</div>
+                    <div [hidden]="!versionForm.controls['description'].errors.maxlength">Name must be no longer than 30
                       characters.
                     </div>
                   </div>
                 </mat-input-container>
                 <div *ngIf="errors" class="error">
                   <small class="form-text validation-error">{{errors['name']}}</small>
+                  <small class="form-text validation-error">{{errors['description']}}</small>
                 </div>
               </form>
             </mat-card-content>
@@ -66,7 +86,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" [disabled]="repositoryForm.invalid" (click)="addRepository()">Save
+        <button type="button" class="btn btn-success" [disabled]="versionForm.invalid" (click)="addVersion()">Save
           changes
         </button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

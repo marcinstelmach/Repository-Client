@@ -22,6 +22,7 @@ import {RepositoryService} from './services/repositoryService';
 import {VersionService} from './services/versionService';
 import {FileService} from './services/fileService';
 import { NgUploaderModule } from 'ngx-uploader';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { NgUploaderModule } from 'ngx-uploader';
     RepositoryComponent,
     VersionComponent,
     FileComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,

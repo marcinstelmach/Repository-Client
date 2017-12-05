@@ -10,13 +10,20 @@ import {PageNotFoundComponent} from './components/shared/page-not-found/page-not
 
 
 const routes: Routes = [
-  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  // { path: 'detail/:id', component: HeroDetailComponent },
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'repository', component: RepositoryComponent, canActivate: [AuthGuard]},
-  {path: 'repository/:repositoryId/version', component: VersionComponent, canActivate: [AuthGuard]},
-  {path: 'repository/:repositoryId/version/:versionId/file', component: FileComponent, canActivate: [AuthGuard]},
+  {
+    path: 'repository/:repositoryId/version',
+    component: VersionComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'repository/:repositoryId/version/:versionId/file',
+    component: FileComponent,
+    canActivate: [AuthGuard]
+  },
   {path: '404', component: PageNotFoundComponent},
   {path: '**', redirectTo: '404'}
 ];

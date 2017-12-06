@@ -28,9 +28,9 @@ button {
 }
 
 .button-up {
-  background-color: #fff;
   font-size: 30px;
   margin:auto;
+  padding: 10px 40px;
 }
 
 
@@ -39,11 +39,7 @@ a:link .button-up {
   color: #312d2e;
 }
 
-.button-up:hover {
-  background-color: #fff;
-  font-size: 31px;
-}
-
 .card-description {
-  line-height: 8px;
+  /*line-height: 8px;*/
+  word-wrap: break-word;
 }

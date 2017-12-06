@@ -5,4 +5,5 @@ export interface VersionForDisplay {
   creationDateTime: string;
   countOfFiles: number;
   repositoryId: string;
+  productionVersion: boolean;
 }

@@ -4,13 +4,6 @@
       <div class="row">
         <button class="button button-up" [routerLink]="['/repository', repositoryId, 'version']"><i class="fa fa-level-up" aria-hidden="true"></i></button>
       </div>
-      <div class="row">
-        <button class="button" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin: auto;">Add files</button>
-      </div>
-      <!--<div class="form-group">-->
-        <!--<label for="files">Add files</label>-->
-        <!--<input type="file" id="files" ngFileSelect (oploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>-->
-      <!--</div>-->
     </div>
     <div class="col-md-9">
       <div class="row">
@@ -26,7 +19,7 @@
           <div class="card-body">
             <h4>{{file.name}}</h4>
             <div class="card-description">
-              <p>Created: {{file.creationDateTime | date: short}}</p>
+              <p>Created: {{file.creationDateTime | date: 'yyyy-MM-dd HH:mm'}}</p>
             </div>
             <button class="button" disabled>Download</button>
             <button (click)="deleteFile(file.id)" class="button">Delete</button>

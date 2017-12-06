@@ -48,5 +48,15 @@ export class VersionService {
     });
   }
 
+  changeVersionStatus(versionId: string, repositoryId: string): Observable<HttpResponse<any>> {
+    const myUrl = this.url + repositoryId + '/versions/' + versionId + '/';
+    return this.http.put(myUrl, null, {
+      headers: {
+        'Authorization': 'Bearer ' + this.token,
+        'Content-Type': 'application/json'
+      }, observe: 'response'
+    });
+  }
+
 
 }

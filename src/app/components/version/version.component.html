@@ -18,11 +18,14 @@
           <div class="card-body">
             <h4>{{ver.name}}</h4>
             <div class="card-description">
+              <p *ngIf="ver.productionVersion" class="alert-warning">Production Version !!!</p>
               <p>Created: {{ver.creationDateTime | date: short}}</p>
               <p>Files: {{ver.countOfFiles}}</p>
             </div>
             <a [routerLink]="[ver.id, 'file']" class="button">Open</a>
             <button (click)="deleteVersion(ver.id)" class="button">Delete</button>
+            <button (click)="changeVersionStatus(ver.id)" class="button" *ngIf="ver.productionVersion === false">Set as Production Version</button>
+            <button (click)="changeVersionStatus(ver.id)" class="button" *ngIf="ver.productionVersion === true">Set as normal Version</button>
           </div>
         </div>
       </div>

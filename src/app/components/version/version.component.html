@@ -19,7 +19,7 @@
             <h4>{{ver.name}}</h4>
             <div class="card-description">
               <p *ngIf="ver.productionVersion" class="alert-warning">Production Version !!!</p>
-              <p>Created: {{ver.creationDateTime | date: short}}</p>
+              <p>Created: {{ver.creationDateTime | date: 'yyyy-MM-dd HH:mm'}}</p>
               <p>Files: {{ver.countOfFiles}}</p>
             </div>
             <a [routerLink]="[ver.id, 'file']" class="button">Open</a>

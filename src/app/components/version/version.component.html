@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-9">
       <div class="row" *ngIf="versions">
-        <div class="col-lg-3 col-sm-6 repository-container" *ngFor="let ver of versions">
+        <div class="col-lg-2 col-sm-6 repository-container" *ngFor="let ver of versions">
           <img class="card-img-top folder-img" [src]="emptyFolder" alt="Card image cap"
                *ngIf="ver.countOfFiles === 0">
           <img class="card-img-top folder-img" [src]="fullFolder" alt="Card image cap"

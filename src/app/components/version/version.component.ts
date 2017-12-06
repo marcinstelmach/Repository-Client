@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {VersionForDisplay} from '../../models/versionForDisplay';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {VersionService} from '../../services/versionService';
@@ -18,6 +18,7 @@ export class VersionComponent implements OnInit {
   versionForm: FormGroup;
   errors: any;
   repositoryId: string;
+  showConflictModal = false;
 
   constructor(private versionService: VersionService, private fb: FormBuilder, private router: Router) {
     const splitedUrl = this.router.url.split('/');
@@ -58,6 +59,22 @@ export class VersionComponent implements OnInit {
     this.versionService.deleteVersionForUser(versionId, this.repositoryId).subscribe(
       resp => {
         this.ngOnInit();
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.error);
+      }
+    );
+  }
+
+  changeVersionStatus(versionId: string) {
+    this.versionService.changeVersionStatus(versionId, this.repositoryId).subscribe(
+      resp => {
+        if (resp.status === 200) {
+          this.ngOnInit();
+        } else if (resp.status === 409) {
+          this.showConflictModal = true;
+          console.log('conflict');
+        }
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);

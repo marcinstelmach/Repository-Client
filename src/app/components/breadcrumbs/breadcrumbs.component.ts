@@ -34,9 +34,8 @@ export class BreadcrumbsComponent implements OnInit {
     }
 
 
-    }
-
-    // console.log(this.breadCrumbs);
   }
+
+  // console.log(this.breadCrumbs);
 
 }

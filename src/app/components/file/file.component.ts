@@ -4,7 +4,7 @@ import {FormBuilder} from '@angular/forms';
 import {FileService} from '../../services/fileService';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
-import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions } from 'ngx-uploader';
+import {humanizeBytes, UploadFile, UploadInput, UploadOutput} from 'ngx-uploader';
 import {AuthService} from '../../services/authService';
 
 @Component({
@@ -14,7 +14,7 @@ import {AuthService} from '../../services/authService';
 })
 export class FileComponent implements OnInit {
 
-  fileImg = '../assets/img/folder.png';
+  fileImg = '../assets/img/file.png';
   files: FileForDisplay[];
   errors: any;
   repositoryId: string;
@@ -25,7 +25,7 @@ export class FileComponent implements OnInit {
   dragOver: boolean;
   userId: string;
 
-  constructor(private fileService: FileService, private fb: FormBuilder, private router: Router, private authService: AuthService ) {
+  constructor(private fileService: FileService, private fb: FormBuilder, private router: Router, private authService: AuthService) {
     const splitedUrl = this.router.url.split('/');
     this.repositoryId = splitedUrl[2];
     this.versionId = splitedUrl[4];
@@ -67,18 +67,18 @@ export class FileComponent implements OnInit {
       }
     );
   }
+
   onUploadOutput(output: UploadOutput): void {
     if (output.type === 'allAddedToQueue') {
       const event: UploadInput = {
         type: 'uploadAll',
-        // url: 'http://localhost:63476/api/values/',
         url: 'http://localhost:44986/api/users/' + this.userId + '/repositories/' + this.repositoryId + '/versions/' + this.versionId + '/files/',
         headers: {'Authorization': 'Bearer ' + this.authService.getToken()},
         method: 'POST',
         data: {foo: 'bar'}
       };
       this.uploadInput.emit(event);
+      this.getFiles();
     }
   }
-
 }

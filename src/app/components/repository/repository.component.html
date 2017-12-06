@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-9">
       <div class="row" *ngIf="repositories">
-        <div class="col-lg-3 col-sm-6 repository-container" *ngFor="let repo of repositories">
+        <div class="col-lg-2 col-sm-6 repository-container" *ngFor="let repo of repositories">
           <img class="card-img-top folder-img" [src]="emptyFolder" alt="Card image cap"
                *ngIf="repo.countOfVersion === 0">
           <img class="card-img-top folder-img" [src]="fullFolder" alt="Card image cap"

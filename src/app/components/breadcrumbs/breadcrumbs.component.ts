@@ -19,24 +19,22 @@ export class BreadcrumbsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const url = window.location.pathname;
-    const splited = url.split('/');
-    console.log(splited);
-    let tempPath = '/';
-
-    for (let i = 0; i < splited.length; i++) {
-      const crumb: BreadModel = {
-        name: splited[i],
-        url: tempPath + splited[i],
-
-      };
-      console.log(crumb);
-    }
-
-
-    }
-
-    // console.log(this.breadCrumbs);
+    // const url = window.location.pathname;
+    // const splited = url.split('/');
+    // console.log(splited);
+    // let tempPath = '/';
+    //
+    // for (let i = 0; i < splited.length; i++) {
+    //   const crumb: BreadModel = {
+    //     name: splited[i],
+    //     url: tempPath + splited[i],
+    //
+    //   };
+    //   console.log(crumb);
+    // }
+    //
+    //
   }
 
+  // console.log(this.breadCrumbs);
 }

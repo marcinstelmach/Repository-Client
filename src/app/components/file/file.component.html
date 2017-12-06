@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="row" *ngIf="files">
-        <div class="col-md-2 col-sm-4 repository-container" *ngFor="let file of files" style="border: 1px red solid;">
+        <div class="col-md-2 col-sm-4 repository-container" *ngFor="let file of files">
           <img class="card-img-top folder-img" [src]="fileImg" alt="File">
           <div class="card-body">
             <h4>{{file.name}}</h4>

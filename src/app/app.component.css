@@ -40,6 +40,11 @@ a:link .button-up {
 }
 
 .card-description {
-  /*line-height: 8px;*/
+  /*line-height: 10px;*/
   word-wrap: break-word;
+  font-size: 12px;
+}
+
+.description-paragraph {
+  margin-bottom: 5px;
 }

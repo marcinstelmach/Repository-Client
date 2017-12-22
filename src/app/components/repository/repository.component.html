@@ -1,13 +1,11 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2">
-      <button class="button" data-toggle="modal"
-              data-target=".bd-example-modal-lg">Create new Repository
-      </button>
+      <button class="button" data-toggle="modal" data-target=".bd-example-modal-lg">Create new Repository</button>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 offset-1">
       <div class="row" *ngIf="repositories">
-        <div class="col-lg-2 col-sm-6 repository-container" *ngFor="let repo of repositories">
+        <div class="col-lg-3 col-sm-6 repository-container" *ngFor="let repo of repositories">
           <img class="card-img-top folder-img" [src]="emptyFolder" alt="Card image cap"
                *ngIf="repo.countOfVersion === 0">
           <img class="card-img-top folder-img" [src]="fullFolder" alt="Card image cap"
@@ -15,7 +13,7 @@
           <div class="card-body">
             <h4>{{repo.name}}</h4>
             <div class="card-description">
-              <p>Created: {{repo.creationDateTime | date: medium}}</p>
+              <p>Created: {{repo.creationDateTime | date: 'yyyy-MM-dd HH:mm'}}</p>
               <p>Versions: {{repo.countOfVersion}}</p>
             </div>
             <a [routerLink]="[repo.id, 'version']" class="button">Open</a>

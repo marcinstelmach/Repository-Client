@@ -2,13 +2,16 @@
   <div class="row">
     <div class="col-md-2">
       <div class="row">
-        <button class="button button-up" routerLink="/repository"><i class="fa fa-level-up" aria-hidden="true"></i></button>
+        <button class="button button-up" routerLink="/repository"><i class="fa fa-level-up" aria-hidden="true"></i>
+        </button>
       </div>
       <div class="row">
-        <button class="button" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin: auto;">Create new Version</button>
+        <button class="button" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin: auto;">Create new
+          Version
+        </button>
       </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 offset-1">
       <div class="row" *ngIf="versions">
         <div class="col-lg-2 col-sm-6 repository-container" *ngFor="let ver of versions">
           <img class="card-img-top folder-img" [src]="emptyFolder" alt="Card image cap"
@@ -18,14 +21,21 @@
           <div class="card-body">
             <h4>{{ver.name}}</h4>
             <div class="card-description">
+              <p class="description-paragraph">Description: {{ver.description}}</p>
               <p *ngIf="ver.productionVersion" class="alert-warning">Production Version !!!</p>
-              <p>Created: {{ver.creationDateTime | date: 'yyyy-MM-dd HH:mm'}}</p>
-              <p>Files: {{ver.countOfFiles}}</p>
+              <p class="description-paragraph">Created: {{ver.creationDateTime | date: 'yyyy-MM-dd HH:mm'}}</p>
+              <p class="description-paragraph">Files: {{ver.countOfFiles}}</p>
             </div>
             <a [routerLink]="[ver.id, 'file']" class="button">Open</a>
             <button (click)="deleteVersion(ver.id)" class="button">Delete</button>
-            <button (click)="changeVersionStatus(ver.id)" class="button" *ngIf="ver.productionVersion === false">Set as Production Version</button>
-            <button (click)="changeVersionStatus(ver.id)" class="button" *ngIf="ver.productionVersion === true">Set as normal Version</button>
+            <div class="container-prod-version">
+              <button (click)="changeVersionStatus(ver.id)" class="button button-prod-version"
+                      *ngIf="ver.productionVersion === false">Set as Production Version
+              </button>
+              <button (click)="changeVersionStatus(ver.id)" class="button button-prod-version"
+                      *ngIf="ver.productionVersion === true">Set as normal Version
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -68,10 +78,12 @@
                   [ngClass]="{'error': versionForm.controls['description'].errors && !versionForm.controls['description'].pristine}"
                   dividerColor="{{versionForm.controls['description'].errors && !versionForm.controls['description'].pristine ? 'warn' : 'primary'}}">
                   <input type="text" matInput formControlName="description" placeholder="Description" required>
-                  <div *ngIf="versionForm.controls['description'].errors && !versionForm.controls['description'].pristine"
-                       class="error-msg">
+                  <div
+                    *ngIf="versionForm.controls['description'].errors && !versionForm.controls['description'].pristine"
+                    class="error-msg">
                     <div
-                      [hidden]="!versionForm.controls['description'].errors.minlength">Name must has at least 3 characters
+                      [hidden]="!versionForm.controls['description'].errors.minlength">Name must has at least 3
+                      characters
                     </div>
                     <div [hidden]="!versionForm.controls['description'].errors.required">Name is required.</div>
                     <div [hidden]="!versionForm.controls['description'].errors.maxlength">Name must be no longer than 30

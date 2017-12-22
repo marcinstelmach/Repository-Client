@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {RepositoryForDisplay} from '../../models/repositoryForDisplay';
 import {RepositoryService} from '../../services/repositoryService';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';

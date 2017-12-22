@@ -58,5 +58,15 @@ export class VersionService {
     });
   }
 
+  addBasedVersion(data: any, repositoryId: string, versionBasedId: string): Observable<HttpResponse<VersionForDisplay>> {
+    const url = this.url + repositoryId + '/versions/' + versionBasedId + '/';
+    return this.http.post<VersionForDisplay>(url, data, {
+      headers: {
+        'Authorization': 'Bearer ' + this.token,
+        'Content-Type': 'application/json'
+      }, observe: 'response'
+    });
+  }
+
 
 }

@@ -26,6 +26,7 @@ form {
   font-size: 10px;
   margin-left: 5%;
   margin-right: 10%;
+
   background-color: rgba(255,22,39,0.5);
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
@@ -38,4 +39,9 @@ form {
 .container-prod-version {
   padding-top: 10px;
   horiz-align: center;
+}
+
+.button-base-version {
+  font-size: 10px;
+  margin-bottom: 10px;
 }

@@ -19,6 +19,7 @@ export class VersionComponent implements OnInit {
   errors: any;
   repositoryId: string;
   showConflictModal = false;
+  basedVersionId: string;
 
   constructor(private versionService: VersionService, private fb: FormBuilder, private router: Router) {
     const splitedUrl = this.router.url.split('/');
@@ -26,6 +27,7 @@ export class VersionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.basedVersionId = null;
     this.getVersions();
     this.createForm();
   }
@@ -78,6 +80,22 @@ export class VersionComponent implements OnInit {
       },
       (err: HttpErrorResponse) => {
         console.log(err.error);
+      }
+    );
+  }
+
+  setBasedVersion(versionId: string) {
+    this.basedVersionId = versionId;
+  }
+
+  addBasedVersion() {
+    const data = this.versionForm.value;
+    this.versionService.addBasedVersion(data, this.repositoryId, this.basedVersionId).subscribe(resp => {
+        this.ngOnInit();
+      },
+      (err: HttpErrorResponse) => {
+        this.errors = err.error;
+        console.log(this.errors);
       }
     );
   }

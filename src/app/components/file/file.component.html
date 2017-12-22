@@ -29,7 +29,7 @@
               <p>Created: {{file.creationDateTime}}</p>
             </div>
             <a [routerLink]="[repositoryId, 'version', versionId, 'files', file.id]" class="button">Download</a>
-            <button (click)="deleteVersion(file.id)" class="button">Delete</button>
+            <button (click)="deleteFile(file.id)" class="button">Delete</button>
           </div>
         </div>
       </div>

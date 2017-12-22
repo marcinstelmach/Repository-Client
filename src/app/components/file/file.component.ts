@@ -45,17 +45,6 @@ export class FileComponent implements OnInit {
     });
   }
 
-  // addFiles() {
-  //   const data = this.versionForm.value;
-  //   this.versionService.addVersionForUser(data, this.repositoryId).subscribe(resp => {
-  //       this.ngOnInit();
-  //     },
-  //     (err: HttpErrorResponse) => {
-  //       this.errors = err.error;
-  //       console.log(this.errors);
-  //     }
-  //   );
-  // }
 
   deleteFile(fileId: string) {
     this.fileService.deleteFile(this.repositoryId, this.versionId, fileId).subscribe(
@@ -80,5 +69,9 @@ export class FileComponent implements OnInit {
       this.uploadInput.emit(event);
       this.getFiles();
     }
+  }
+
+  downloadFile(fileId: string) {
+
   }
 }

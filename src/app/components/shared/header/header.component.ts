@@ -9,15 +9,18 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isLogin: boolean;
+  versionId: string;
+  repositoryId: string;
 
   constructor(private authService: AuthService, private router: Router) {
     router.events.subscribe(val => {
       this.checkIfLogin();
+      this.createLinks();
     });
   }
 
   ngOnInit() {
-    this.checkIfLogin();
+
   }
 
   logout() {
@@ -27,6 +30,12 @@ export class HeaderComponent implements OnInit {
 
   checkIfLogin(): void {
     this.isLogin = !this.authService.isTokenExpired();
+  }
+
+  private createLinks() {
+    const splitted = this.router.url.split('/');
+    this.repositoryId = splitted[2];
+    this.versionId = splitted[4];
   }
 
 }

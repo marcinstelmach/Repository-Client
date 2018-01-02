@@ -3,4 +3,5 @@ export interface FileForDisplay {
   name: string;
   createdDateTime: string;
   versionId: string;
+  path: string;
 }

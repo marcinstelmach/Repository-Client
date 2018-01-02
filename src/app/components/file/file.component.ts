@@ -7,6 +7,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {humanizeBytes, UploadFile, UploadInput, UploadOutput} from 'ngx-uploader';
 import {AuthService} from '../../services/authService';
 import {GlobalService} from '../../services/globalService';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-file',
@@ -14,6 +15,7 @@ import {GlobalService} from '../../services/globalService';
   styleUrls: ['./file.component.css']
 })
 export class FileComponent implements OnInit {
+  [x: string]: any;
 
   fileImg = '../assets/img/file.png';
   files: FileForDisplay[];
@@ -34,6 +36,14 @@ export class FileComponent implements OnInit {
     this.uploadInput = new EventEmitter<UploadInput>();
     this.humanizeBytes = humanizeBytes;
     this.userId = authService.getUserId();
+  }
+
+  setFileName(fileName: string): string {
+    if (fileName === null) {
+      return 'file';
+    } else {
+      return fileName;
+    }
   }
 
   ngOnInit() {
@@ -62,7 +72,8 @@ export class FileComponent implements OnInit {
     if (output.type === 'allAddedToQueue') {
       const event: UploadInput = {
         type: 'uploadAll',
-        url: 'http://localhost:44986/api/users/' + this.userId + '/repositories/' + this.repositoryId + '/versions/' + this.versionId + '/files/',
+        url: this.globalService.servicePath + 'users/' + this.userId + '/repositories/' + this.repositoryId +
+        '/versions/' + this.versionId + '/files/',
         headers: {'Authorization': 'Bearer ' + this.authService.getToken()},
         method: 'POST',
         data: {foo: 'bar'}
@@ -72,13 +83,24 @@ export class FileComponent implements OnInit {
     if (output.type === 'done') {
       this.ngOnInit();
     }
-
-
-
   }
 
   downloadFile(fileId: string) {
-
+    // const FileSaver = require('file-saver');
+    this.fileService.downloadFileInfo(this.repositoryId, this.versionId, fileId).subscribe(
+      resp => {
+        this.fileService.downoloadFile(this.repositoryId, this.versionId, fileId).subscribe(
+          response => {
+            FileSaver.saveAs(response, this.setFileName(resp.body.name));
+          },
+          (err: HttpErrorResponse) => {
+            console.log(err.error);
+          }
+        );
+      },
+      (err: HttpErrorResponse) => {
+        console.log('infoo' + err.error);
+      }
+    );
   }
-
 }

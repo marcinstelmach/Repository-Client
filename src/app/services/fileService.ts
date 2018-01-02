@@ -28,16 +28,6 @@ export class FileService {
     });
   }
 
-  // addFiles(data: any, repositoryId: string): Observable<HttpResponse<VersionForDisplay>> {
-  //   const url = this.url + repositoryId + '/versions/';
-  //   return this.http.post<VersionForDisplay>(url, data, {
-  //     headers: {
-  //       'Authorization': 'Bearer ' + this.token,
-  //       'Content-Type': 'application/json'
-  //     }, observe: 'response'
-  //   });
-  // }
-
   deleteFile(repositoryId: string, versionId: string, fileId: string): Observable<HttpResponse<any>> {
     const myUrl = this.url + repositoryId + '/versions/' + versionId + '/files/' + fileId;
     return this.http.delete(myUrl, {
@@ -48,13 +38,26 @@ export class FileService {
     });
   }
 
-  public  uploadImage(file: any, repositoryId: string, versionId: string): Observable<HttpResponse<FileForDisplay>> {
-    const myUrl = this.url + repositoryId + '/versions/' + versionId + '/files/';
-    return this.http.post<FileForDisplay>(myUrl, file, {
+
+  downoloadFile(repositoryId: string, versionId: string, fileId: string): any {
+    const myUrl = this.url + repositoryId + '/versions/' + versionId + '/files/download/' + fileId;
+    return this.http.get(myUrl, {
+      responseType: 'blob',
+      headers: {'Authorization': 'Bearer ' + this.token}
+    })
+      .map( res => {
+        return new Blob([res]);
+      });
+  }
+
+  downloadFileInfo(repositoryId: string, versionId: string, fileId: string): Observable<HttpResponse<FileForDisplay>> {
+    const myUrl = this.url + repositoryId + '/versions/' + versionId + '/files/' + fileId;
+    return this.http.get<FileForDisplay>(myUrl, {
       headers: {
         'Authorization': 'Bearer ' + this.token,
         'Content-Type': 'application/json'
       }, observe: 'response'
     });
   }
+
 }

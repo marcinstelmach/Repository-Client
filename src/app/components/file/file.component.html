@@ -21,7 +21,7 @@
             <div class="card-description">
               <p>Created: {{file.creationDateTime}}</p>
             </div>
-            <a [routerLink]="[repositoryId, 'version', versionId, 'files', file.id]" class="button file-button">Download</a>
+            <button (click)="downloadFile(file.id)" class="button file-button">Download</button>
             <button (click)="deleteFile(file.id)" class="button file-button">Delete</button>
           </div>
         </div>

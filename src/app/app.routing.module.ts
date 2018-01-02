@@ -18,7 +18,8 @@ const routes: Routes = [
   {path: 'repository/:repositoryId/version', component: VersionComponent, canActivate: [AuthGuard]},
   {path: 'repository/:repositoryId/version/:versionId/file', component: FileComponent, canActivate: [AuthGuard]},
   {path: '404', component: PageNotFoundComponent},
-  {path: '**', redirectTo: 'login'}
+  {path: '**', redirectTo: '404'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 
 

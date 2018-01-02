@@ -4,32 +4,25 @@
       <div class="row">
         <button class="button button-up" [routerLink]="['/repository', repositoryId, 'version']"><i class="fa fa-level-up" aria-hidden="true"></i></button>
       </div>
-
       <div class="row">
         <div>
-          <div class="drop-container drop-area" ngFileDrop (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" [ngClass]="{ 'is-drop-over': dragOver }">
-            <p class="drag-drop-paragraph">Drag &amp; Drop</p>
+          <div class="drop-container drop-area" ngFileDrop (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" [ngClass]="{ 'is-drop-over': dragOver }" (onUploadCompleted)="uploadCompled($event)">
+            <p class="drag-drop-paragraph">Drop files to upload</p>
           </div>
         </div>
       </div>
-
-      <!--<div class="form-group">-->
-        <!--<label for="files">Add files</label>-->
-        <!--<input type="file" id="files" ngFileSelect (oploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>-->
-      <!--</div>-->
     </div>
     <div class="col-md-9 offset-1">
-
       <div class="row" *ngIf="files">
-        <div class="col-lg-4 col-sm-6 repository-container" *ngFor="let file of files">
+        <div class="col-lg-3 col-sm-6 repository-container" *ngFor="let file of files">
           <img class="card-img-top folder-img" [src]="fileImg" alt="File">
           <div class="card-body">
             <h5 style="word-wrap: break-word;">{{file.name}}</h5>
             <div class="card-description">
               <p>Created: {{file.creationDateTime}}</p>
             </div>
-            <a [routerLink]="[repositoryId, 'version', versionId, 'files', file.id]" class="button">Download</a>
-            <button (click)="deleteFile(file.id)" class="button">Delete</button>
+            <a [routerLink]="[repositoryId, 'version', versionId, 'files', file.id]" class="button file-button">Download</a>
+            <button (click)="deleteFile(file.id)" class="button file-button">Delete</button>
           </div>
         </div>
       </div>

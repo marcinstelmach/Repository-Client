@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import {humanizeBytes, UploadFile, UploadInput, UploadOutput} from 'ngx-uploader';
 import {AuthService} from '../../services/authService';
+import {GlobalService} from '../../services/globalService';
 
 @Component({
   selector: 'app-file',
@@ -25,7 +26,7 @@ export class FileComponent implements OnInit {
   dragOver: boolean;
   userId: string;
 
-  constructor(private fileService: FileService, private fb: FormBuilder, private router: Router, private authService: AuthService) {
+  constructor(private fileService: FileService, private fb: FormBuilder, private router: Router, private authService: AuthService, private globalService: GlobalService) {
     const splitedUrl = this.router.url.split('/');
     this.repositoryId = splitedUrl[2];
     this.versionId = splitedUrl[4];
@@ -67,11 +68,17 @@ export class FileComponent implements OnInit {
         data: {foo: 'bar'}
       };
       this.uploadInput.emit(event);
-      this.getFiles();
     }
+    if (output.type === 'done') {
+      this.ngOnInit();
+    }
+
+
+
   }
 
   downloadFile(fileId: string) {
 
   }
+
 }

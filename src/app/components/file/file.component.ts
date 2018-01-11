@@ -79,6 +79,11 @@ export class FileComponent implements OnInit {
         data: {foo: 'bar'}
       };
       this.uploadInput.emit(event);
+    } else if (output.type === 'uploading') {
+      console.log('uploading');
+    } else if (output.type === 'rejected') {
+      console.log('Probably error');
+      console.log('uploading');
     }
     if (output.type === 'done') {
       this.ngOnInit();
